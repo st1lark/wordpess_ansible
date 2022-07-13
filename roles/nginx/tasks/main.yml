@@ -1,0 +1,20 @@
+---
+- name: Install Web Sever Nginx
+  apt:
+          name=nginx
+          update_cache=yes
+          state=latest
+
+- name: Create Virttual Host
+  template:
+          src: templates/{{ virtual_domain }}.conf
+          dest: /etc/nginx/sites-enabled/{{ virtual_domain }}.conf
+          validate: nginx -t
+
+- name: Create home dir
+  file:
+          path: /var/www/{{ virtual_domain }}
+          state: directory
+          owner: '{{ nginx_user }}'
+          group: '{{ nginx_user }}'
+          mode: '0755'
