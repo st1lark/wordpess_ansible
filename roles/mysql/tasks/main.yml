@@ -1,0 +1,26 @@
+---
+- name: Install mysql
+  apt: 
+      name: '{{ item }}'
+      state: latest
+  loop:
+      - python3-pymysql
+      - mysql-server
+
+- name: Create WP_Database
+  mysql_db:
+      name: wordpress
+      state: present
+      login_user: root
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      check_implicit_admin: yes
+      
+- name: Create WP_USER_DB
+  mysql_user:
+      name: wordpress
+      password: 1mRdSD
+      priv: wordpress.*:ALL
+      state: present
+      login_user: root
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      check_implicit_admin: yes

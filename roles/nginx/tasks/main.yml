@@ -7,9 +7,8 @@
 
 - name: Create Virttual Host
   template:
-          src: templates/{{ virtual_domain }}.conf
+          src: templates/default.conf
           dest: /etc/nginx/sites-enabled/{{ virtual_domain }}.conf
-          validate: nginx -t
 
 - name: Create home dir
   file:
@@ -18,3 +17,8 @@
           owner: '{{ nginx_user }}'
           group: '{{ nginx_user }}'
           mode: '0755'
+
+- name: Restart Nginx
+  systemd:
+          name: nginx
+          state: restarted

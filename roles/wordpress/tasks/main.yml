@@ -1,5 +1,8 @@
 ---
 - name: Download Wordpress
   unarchive:
-          src: https://
-
+          src: https://wordpress.org/latest.tar.gz
+          dest: /var/www/{{ virtual_domain }}
+          remote_src: yes
+          owner: '{{ nginx_user }}'
+          group: '{{ nginx_user }}'

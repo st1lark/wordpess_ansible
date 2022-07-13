@@ -3,7 +3,8 @@
   remote_user: root
   roles:
          - nginx
-           #         - phpfpm
-           # - mysql
+         - phpfpm
+         - mysql
          - wordpress
+
 

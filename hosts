@@ -1,0 +1,5 @@
+[server1]
+45.90.33.31 virtual_domain=busy.stlark.ru nginx_user=www-data
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

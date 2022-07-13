@@ -1,0 +1,14 @@
+---
+- name: Instal php-fpm
+  apt:
+          name: "{{ item }}"
+          state: latest
+  loop:
+    - php7.4-fpm
+    - php7.4-mysql
+
+- name: restart php-fpm
+  systemd:
+        name: php7.4-fpm
+        state: restarted
+  
